@@ -2,13 +2,13 @@
 onload=function(){
   canvas=document.createElement('canvas');
   document.body.innerHTML='';
-  [{w:16,h:32,font:24,wscale:1,col:255,yoffset:-0.1}].forEach(function(info){
+  [{w:16,h:32,font:24,wscale:1,col:255,yoffset:-0.05}].forEach(function(info){
     canvas.width=info.w*16;
     canvas.height=info.h*8;
     g=canvas.getContext('2d');
-    // g.fillStyle='black'
-    // g.fillRect(0,0,canvas.width,canvas.height);
+    g.lineWidth=30;
     g.fillStyle='black'
+    g.strokeStyle='white'
     for(var i=0;i<128;i++){
       g.save();
       var x=i%16,y=(i-x)/16;
@@ -20,14 +20,10 @@ onload=function(){
       g.font=info.font*10+'px Monaco'
       g.textAlign='center'
       g.textBaseline='middle'
+      g.strokeText(String.fromCharCode(i),0,0)
       g.fillText(String.fromCharCode(i),0,0)
       g.restore();
     }
-    data=g.getImageData(0,0,canvas.width,canvas.height);
-    for(var i=0;i<data.data.length;i++){
-      if(i%4!=3)data.data[i]=Math.round(data.data[i]/255*(info.col-1))*255/(info.col-1);
-    }
-    g.putImageData(data,0,0);
     img=new Image();img.src=canvas.toDataURL()
     document.body.appendChild(img);
   });
