@@ -1,5 +1,4 @@
 require_relative 'lib/canvas'
-require 'pry' rescue nil
 require 'io/console'
 class Pokemon
   def initialize
@@ -129,12 +128,3 @@ class Pokemon
 end
 
 Pokemon.new.run
-
-#
-# # screen.draw chars.sub(0..0.5, 0..0.5), 0, 0, 80, 80
-# screen.draw chars[65], 0, 0, 40, 80
-#
-# puts screen.to_aa
-# # binding.pry
-#
-# p 1
