@@ -26,7 +26,7 @@ class Pokemon
   def random_pokemon path
     hexdigest = ::Digest::SHA1.hexdigest path
     dir = Dir.new File.expand_path('images/pokemon', File.dirname(__FILE__))
-    files = dir.each.to_a.grep /.*\.png$/
+    files = dir.each.to_a.grep(/.*\.png$/).sort
     file = files[hexdigest.to_i(16)%files.size]
     load_image "images/pokemon/#{file}"
   end
