@@ -1,5 +1,6 @@
 require_relative 'lib/canvas'
 require 'io/console'
+require 'digest'
 class Pokemon
   def initialize
     char_image = load_image 'images/chars.png'
@@ -17,19 +18,17 @@ class Pokemon
 
   def show screen
     commands = screen.to_aa.each_with_index.map{|line, i|
-      ["\e[#{i+1};1H", line]
+      ["\e[#{i+1};1H", line, "\n"]
     }
     STDOUT.write commands.join
   end
 
   def random_pokemon path
-    seed = 0
-    10.times{
-      path.each_char{|c|seed = Math.sin(c.ord+seed)+Math.cos(seed*seed)}
-    }
-    size = 152
-    id = (seed*size*65536).round%size
-    load_image "images/pokemon/#{id}.png"
+    hexdigest = ::Digest::SHA1.hexdigest path
+    dir = Dir.new File.expand_path('images/pokemon', File.dirname(__FILE__))
+    files = dir.each.to_a.grep /.*\.png$/
+    file = files[hexdigest.to_i(16)%files.size]
+    load_image "images/pokemon/#{file}"
   end
 
   def run
