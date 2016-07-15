@@ -54,7 +54,10 @@ class Pokemon
     time0 = Time.now
     gettime = 20
     Thread.new{
-      STDIN.getc;gettime = [[gettime, Time.now - time0].min, 2].max
+      loop{
+        STDIN.noecho &:getch
+        gettime = [[gettime, Time.now - time0].min, 2].max
+      }
     }
     loop do
       time = Time.now - time0
