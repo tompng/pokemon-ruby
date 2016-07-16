@@ -18,7 +18,7 @@ class Pokemon
 
   def show screen
     commands = screen.to_aa.each_with_index.map{|line, i|
-      ["\e[#{i+1};1H", line, "\n"]
+      ["\n\e[#{i+1};1H", line]
     }
     STDOUT.write commands.join
   end
