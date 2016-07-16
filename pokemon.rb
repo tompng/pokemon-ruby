@@ -52,9 +52,11 @@ class Pokemon
     d2 = [rand(-1..1), rand(-1..1)]
     time0 = Time.now
     gettime = 20
+    exit_flag = false
     Thread.new{
       loop{
-        STDIN.noecho &:getch
+        ch = STDIN.noecho &:getch
+        exit_flag = true if ["\x03", "\x1C", 'q', 'Q'].include? ch
         gettime = [[gettime, Time.now - time0].min, 2].max
       }
     }
@@ -103,6 +105,7 @@ class Pokemon
         end
       end
       show screen
+      exit if exit_flag
       sleep 0.05
     end
   end
