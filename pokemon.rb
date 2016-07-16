@@ -116,11 +116,20 @@ class Pokemon
   def set_gotcha! screen
     msg = "Gotcha!"
     xsize = 80/msg.size
+    ysize = 2*xsize
+    r = 4
+    (-r..xsize*msg.size+r).each{|x|(-r..ysize).each{|y|
+      pos = screen.width/2-msg.size/2.0*xsize+x, screen.height-ysize+y
+      r = 4
+      dx = 1-[-x, x-xsize*msg.size, 0].max.fdiv(r)
+      dy = 1-[-y, y-ysize, 0].max.fdiv(r)
+      screen.plot *pos, 1, 0.8*dx*dy
+    }}
     msg.chars.each_with_index{|c, i|
       screen.draw(
         @chars[c.ord],
         screen.width/2+(i-msg.size/2.0)*xsize,
-        screen.height - xsize*2,
+        screen.height-ysize,
         xsize,
         2*xsize
       )

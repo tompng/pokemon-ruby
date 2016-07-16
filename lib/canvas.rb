@@ -8,13 +8,12 @@ module Canvas
     end
 
     def plot x, y, c, a
-      @screen[y][x] = (1-a)*@screen[y][x]+a*c
+      @screen[y][x] = (1-a)*@screen[y][x]+a*c if (0...width).include?(x) && (0...height).include?(y)
     end
 
     def draw image, x, y, w, h
       return if x > width || y > height || x+w < 0 || y+h < 0
       (x.floor...(x+w)).each{|ix|(y.floor...(y+h)).each{|iy|
-        next unless (0...width).include?(ix) && (0...height).include?(iy)
         plot ix, iy, *image.get((ix-x).fdiv(w), (iy-y).fdiv(h))
       }}
     end
