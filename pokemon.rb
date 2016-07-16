@@ -56,8 +56,11 @@ class Pokemon
     Thread.new{
       loop{
         ch = STDIN.noecho &:getch
-        exit_flag = true if ["\x03", "\x1C", 'q', 'Q'].include? ch
-        gettime = [[gettime, Time.now - time0].min, 2].max
+        if ["\x03", "\x1C", 'q', 'Q'].include? ch
+          exit_flag = true
+        else
+          gettime = [[gettime, Time.now - time0].min, 2].max
+        end
       }
     }
     loop do
