@@ -1,3 +1,4 @@
+# Pokemon-Ruby
 
 ## Pokemons are hiding in your local directories
 ```
@@ -97,4 +98,29 @@ $ cat pokemon.txt
                                 v;   `""bb?*********"'                          
                                 `*k.    b*`                                     
                                   `+,,-*`                                       
+```
+
+## How to use
+```shell
+# Bundle install (pokemon-ruby requires gem chunky_png)
+$ bundle install
+
+# Search for `pokemon sprite` images(png) and place it to `images/pokemon/`
+# if you skip this step, only gopher will appear.
+
+# Find pokemon! Type any key to catch them!
+$ ruby pokemon.rb
+
+# Pokemon you caught will stay inside `./pokemon.txt`
+$ cat pokemon.txt
+
+# Change directory, and you will find another pokemon!
+$ cd somewhere
+$ ruby path/to/pokemon.rb
+
+# add alias(write to `~/.bashrc` or `~/.zshrc`)
+alias my-pokemon-command="ruby /path/to/pokemon.rb"
+# or rewrite ls, cd
+alias ls="ruby /path/to/pokemon.rb"
+cd(){builtin cd "$@" && ruby /path/to/pokemon.rb}
 ```
