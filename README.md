@@ -121,7 +121,7 @@ $ cd somewhere
 $ ruby path/to/pokemon.rb
 
 # add alias(write to `~/.bashrc` or `~/.zshrc`)
-alias my-pokemon-command="ruby /path/to/pokemon.rb"
+alias pokemonruby="ruby /path/to/pokemon.rb"
 # or rewrite ls, cd
 alias ls="ruby /path/to/pokemon.rb"
 cd(){builtin cd "$@" && ruby /path/to/pokemon.rb}
