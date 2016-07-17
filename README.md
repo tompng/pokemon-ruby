@@ -1,6 +1,8 @@
 # Pokemon-Ruby
 
-## Pokemons are hiding in your local directories
+golang version: [tompng/pokemon-go](https://github.com/tompng/pokemon-go)
+
+## Pokemons are hiding in your local directory
 ```
 $ cd somewhere; ruby path/to/pokemon.rb
                                                   MQBTm             uuuu        
